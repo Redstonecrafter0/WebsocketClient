@@ -1,0 +1,79 @@
+:root {
+    --anim-time: 500ms;
+}
+body {
+    background: #121212;
+    display: flex;
+    flex-direction: column;
+    margin: 0 2.5vw;
+    padding: 0;
+}
+* {
+    color: white;
+    font-family: "Segoe UI", sans-serif;
+}
+#connection input {
+    background: black;
+    outline: none;
+    border: 2px solid white;
+    height: 2rem;
+    transition: border-color var(--anim-time);
+    padding: 0 .5rem;
+}
+#connection input:active {
+    transition: border-color calc(var(--anim-time) / 4);
+    border-color: lime;
+}
+#title {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    height: 3rem;
+}
+#message_history {
+    position: relative;
+    border: 1px solid white;
+    height: calc(80vh - 3rem);
+    overflow: auto;
+}
+.msg {
+    border: 1px solid white;
+    margin: 0;
+    padding: .25rem;
+}
+.log_msg {
+    border: 1px solid white;
+    margin: 0;
+    padding: .25rem .25rem .25rem 1rem;
+    color: #888888;
+}
+.inbound::before {
+    content: '↓';
+    color: red;
+    margin-right: .5rem;
+}
+.outbound::before {
+    content: '↑';
+    color: lime;
+    margin-right: .5rem;
+}
+#send_message {
+    border: 1px solid white;
+    border-top: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#send_message input {
+    background: black;
+    outline: none;
+    border: none;
+    height: 1.5rem;
+}
+#send_message input:first-child {
+    width: calc(100% - 5rem);
+}
+#send_message input:last-child {
+    width: 5rem;
+    border-left: 1px solid white;
+}

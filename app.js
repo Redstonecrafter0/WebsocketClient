@@ -1,12 +1,8 @@
-function escapeHtml(html){
-    let text = document.createTextNode(html);
-    let p = document.createElement('p');
-    p.appendChild(text);
-    return p.innerHTML;
-}
 const message_history = document.getElementById('message_history')
 const send_button = document.getElementById('send_button')
-let ws = null;
+const connect_button = document.getElementById('connect_button')
+let ws = null
+
 function addMessage(message, out) {
     let p = document.createElement('p')
     p.appendChild(document.createTextNode(message))
@@ -17,29 +13,33 @@ function addMessage(message, out) {
     }
     message_history.appendChild(p)
 }
+
 function addLog(message) {
     let p = document.createElement('p')
     p.appendChild(document.createTextNode(message))
     p.className = 'log_msg'
     message_history.appendChild(p)
 }
+
 document.getElementById('connect_button').addEventListener('click', e => {
     e.preventDefault()
     if (ws == null) {
+        connect_button.value = 'Connecting'
         send_button.disabled = true
         message_history.innerHTML = ''
         ws = new WebSocket(document.getElementById('ws_url').value)
-        ws.onconnect = () => {
+        ws.onopen = () => {
             send_button.disabled = false
+            connect_button.value = 'Disconnect'
             addLog('Connected...')
         }
         ws.onclose = () => {
             ws = null
             send_button.disabled = false
+            connect_button.value = 'Connect'
             addLog('Disconnected...')
         }
     } else {
-        ws.disconnect()
     }
 })
 send_button.addEventListener('click', e => {

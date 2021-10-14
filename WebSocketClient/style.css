@@ -19,10 +19,14 @@ body {
     height: 2rem;
     transition: border-color var(--anim-time);
     padding: 0 .5rem;
+    margin: 0;
 }
 #connection input:active {
     transition: border-color calc(var(--anim-time) / 4);
     border-color: lime;
+}
+#connection {
+    height: 2rem;
 }
 #title {
     margin: 0;
@@ -33,13 +37,15 @@ body {
 #message_history {
     position: relative;
     border: 1px solid white;
-    height: calc(80vh - 3rem);
+    height: calc(100vh - 9rem);
     overflow: auto;
 }
 .msg {
     border: 1px solid white;
     margin: 0;
-    padding: .25rem;
+    background: black;
+    line-break: anywhere;
+    padding: .25rem .25rem .25rem 1rem;
 }
 .log_msg {
     border: 1px solid white;
@@ -49,13 +55,15 @@ body {
 }
 .inbound::before {
     content: '↓';
+    position: absolute;
     color: red;
-    margin-right: .5rem;
+    left: .5rem;
 }
 .outbound::before {
     content: '↑';
+    position: absolute;
     color: lime;
-    margin-right: .5rem;
+    left: .5rem;
 }
 #send_message {
     border: 1px solid white;
